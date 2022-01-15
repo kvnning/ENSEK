@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DEE0DA3D-D4CF-437C-9B4D-90C0CA80641F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{33785556-A0D0-4580-91F4-1C0518BD6DF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENSEKTest.API.Tests.Unit", "ENSEKTest.API.Tests.Unit\ENSEKTest.API.Tests.Unit.csproj", "{63F8558D-D5D1-4AE7-876B-20E99DDBE450}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENSEKTest", "ENSEKTest\ENSEKTest.csproj", "{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENSEKTest.Tests.Unit", "ENSEKTest.Tests.Unit\ENSEKTest.Tests.Unit.csproj", "{CE08E706-4F3D-4320-B60F-BAE7E44CAB16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B241F17-356C-46DA-9E5C-4503F57CEF8C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENSEKTest.API", "ENSEKTest.API\ENSEKTest.API.csproj", "{A523C346-2973-4423-91B5-14BD2C959DA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63F8558D-D5D1-4AE7-876B-20E99DDBE450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F8558D-D5D1-4AE7-876B-20E99DDBE450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F8558D-D5D1-4AE7-876B-20E99DDBE450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F8558D-D5D1-4AE7-876B-20E99DDBE450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE08E706-4F3D-4320-B60F-BAE7E44CAB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE08E706-4F3D-4320-B60F-BAE7E44CAB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE08E706-4F3D-4320-B60F-BAE7E44CAB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE08E706-4F3D-4320-B60F-BAE7E44CAB16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A523C346-2973-4423-91B5-14BD2C959DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A523C346-2973-4423-91B5-14BD2C959DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A523C346-2973-4423-91B5-14BD2C959DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A523C346-2973-4423-91B5-14BD2C959DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63F8558D-D5D1-4AE7-876B-20E99DDBE450} = {33785556-A0D0-4580-91F4-1C0518BD6DF6}
+		{8F2D1A27-E3B1-4DB2-B66F-27350AA9A4A2} = {DEE0DA3D-D4CF-437C-9B4D-90C0CA80641F}
+		{CE08E706-4F3D-4320-B60F-BAE7E44CAB16} = {33785556-A0D0-4580-91F4-1C0518BD6DF6}
+		{A523C346-2973-4423-91B5-14BD2C959DA0} = {DEE0DA3D-D4CF-437C-9B4D-90C0CA80641F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84A2F3A9-2AC8-4E60-8D7F-02FEAE68A585}
+	EndGlobalSection
+EndGlobal
