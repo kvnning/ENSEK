@@ -1,0 +1,54 @@
+This file records the thought process during the technical test. This is so there is a point of reference in the following interview.
+
+Prereq - database, git and solution
+
+Reading more on acceptance critera:
+Assumption: New reads are added directly to DB, no side effects on old one.
+Assumption: Reading values type ambiguous - validation suggest varchar, data and semantics suggests int. Will use int.
+
+Interfaces:
+IMeterReadingUploadService
+{
+int ProcessUpload (FormFile)
+}
+
+IParserService<TSource, TOutput> 
+{
+List<TOutput> Read(TSource, out int numberOfFailures) 
+}
+
+IUploadService<T>
+{
+Bool CanUpload(T)
+void Upload(T)
+}
+
+Possibly have dedicated model
+DataAttributes for validation on model
+Possibly IValidate on model or standalone IValidator
+
+Adding skeleton implementations
+Adding EFCore and generating model/context
+Adding Tests for implementations (that all currently fail)
+
+Code generated EFModels prevent attributes for validation. Everything for MeterReading is numerical values so none needed though.
+
+Implementing CSVParserService (via CSVHelper) - Tests now pass
+Implementing DatabaseUploadService and fixing tests - Tests now pass
+Implementing MeterReadingUploadService - Test now pass.
+
+Double check on spec mentions the meter value must be 5 numbers long, this was missed in original tests.
+Adding new (failing) test for this case.
+Refactoring Read method and breaking out a smaller CanParse validation method.
+
+Forgot about number of successes required in controller response. 
+Refactored MeterReadingUploadService and tests to reflect this. Also added controller test (and split out common test resources).
+Implemented Controller (Tests now pass)
+
+Configurating DI for interfaces
+
+
+
+
+
+
