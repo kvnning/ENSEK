@@ -1,4 +1,5 @@
-﻿using ENSEKTest.Models.EFModels;
+﻿using ENSEKTest.Models;
+using ENSEKTest.Models.EFModels;
 using Microsoft.AspNetCore.Http;
 
 namespace ENSEKTest.Services
@@ -14,8 +15,9 @@ namespace ENSEKTest.Services
             this.UploadService = uploadService;
         }
 
-        public int ProcessUpload(IFormFile file)
+        public MeterReadingUploadResult ProcessUpload(IFormFile file)
         {
+            var numberOfSucesses = 0;
             var readingList = this.ParserService.Read(file, out var numberOfFailures);
             if (readingList.Any())
             {
@@ -23,7 +25,9 @@ namespace ENSEKTest.Services
                 {
                     if (this.UploadService.CanUpload(reading))
                     {
-                        this.UploadService.Upload(reading);
+                        if (this.UploadService.Upload(reading)) {
+                            numberOfSucesses++;
+                        }
                     }
                     else
                     {
@@ -31,7 +35,12 @@ namespace ENSEKTest.Services
                     }
                 }
             }
-            return numberOfFailures;
+
+            return new MeterReadingUploadResult
+            {
+                NumberOfFailures = numberOfFailures,
+                NumberOfSuccesses = numberOfSucesses
+            };
         }
     }
 }

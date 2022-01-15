@@ -104,5 +104,24 @@ namespace ENSEKTest.Tests.Unit
             Assert.AreEqual(436, result.First().MeterReadValue);
             Assert.AreEqual(0, numberOfFailures);
         }
+
+        [TestMethod]
+        public void Read_WithIncorrectReadValueFormat_ReturnsError()
+        {
+            //Arrange
+            var service = new CSVParserService();
+            var content = @"AccountId,MeterReadingDateTime,MeterReadValue
+1241,11/04/2019 09:24,0436,X";
+            var bytes = Encoding.UTF8.GetBytes(content);
+            var data = new FormFile(new MemoryStream(bytes), 0, content.Length, "Data", "test.csv");
+
+            //Act
+            int numberOfFailures;
+            var result = service.Read(data, out numberOfFailures);
+
+            //Assert
+            Assert.AreEqual(0, result.Count());
+            Assert.AreEqual(1, numberOfFailures);
+        }
     }
 }

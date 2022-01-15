@@ -14,12 +14,33 @@ namespace ENSEKTest.Services
 
         public bool CanUpload(MeterReading item)
         {
-            throw new NotImplementedException();
+            //Ensure all readings are new
+            if (this.DbContext.MeterReadings.Any(
+                x => x.AccountId == item.AccountId 
+                && x.MeterReadingDateTime >= item.MeterReadingDateTime))
+            {
+                return false;
+            }
+            //Ensure accounts exist
+            if (!this.DbContext.Accounts.Any(x => x.AccountId == item.AccountId))
+            {
+                return false;
+            }
+            return true;
         }
 
         public bool Upload(MeterReading item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.DbContext.MeterReadings.Add(item);
+                this.DbContext.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

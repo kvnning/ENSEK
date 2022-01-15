@@ -1,52 +1,67 @@
-﻿using ENSEKTest.Models.EFModels;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using ENSEKTest.Models;
+using ENSEKTest.Models.EFModels;
 using Microsoft.AspNetCore.Http;
+using System.Globalization;
 
 namespace ENSEKTest.Services
 {
     public class CSVParserService : IParserService<IFormFile, MeterReading>
     {
-
         public IEnumerable<MeterReading> Read(IFormFile source, out int numberOfFailures)
         {
             numberOfFailures = 0;
-            var reader = new StreamReader(source.OpenReadStream());
-            var result = new List<MeterReading>();
-
-            try
+            var results = new List<MeterReading>();
+            using (var reader = new StreamReader(source.OpenReadStream()))
             {
-                while (reader.Peek() >= 0)
+                using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
                 {
-                    var line = reader.ReadLine();
-                    if (this.CanParse(line))
-                    {
-                        result.Add(this.ParseLine(line));
-                    }
-                    else
-                    {
-                        numberOfFailures++;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
+                    csv.Read();
+                    csv.ReadHeader();
 
-            }
-            finally
-            {
-                reader.Dispose();
-            }
+                    while (csv.Read())
+                    {
+                        MeterReading reading = null;
+                        try
+                        {
+                            var accountId = csv.GetField<int>("AccountId");
+                            var meterReadingDateTime = csv.GetField<DateTime>("MeterReadingDateTime");
+                            var meterReadValue = csv.GetField<string>("MeterReadValue");
 
-            return result;
+                            if (this.CanParse(accountId, meterReadingDateTime, meterReadValue))
+                            {
+                                reading = new MeterReading
+                                {
+                                    AccountId = accountId,
+                                    MeterReadingDateTime = meterReadingDateTime,
+                                    MeterReadValue = int.Parse(meterReadValue)
+                                };
+                            }
+                            else
+                            {
+                                numberOfFailures++;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            numberOfFailures++;
+                        }
+
+                        if (reading != null)
+                        {
+                            results.Add(reading);
+                        }
+                    }
+                };
+            };
+
+            return results;
         }
 
-        public MeterReading ParseLine(string data)
+        public bool CanParse(int accountId, DateTime meterReadingDateTime, string meterReadValue)
         {
-            return new MeterReading();
-        }
-
-        public bool CanParse(string? data)
-        {
-            if (data == null)
+            if (meterReadValue.Length != 5)
             {
                 return false;
             }

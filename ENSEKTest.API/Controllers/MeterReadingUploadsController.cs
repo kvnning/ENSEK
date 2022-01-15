@@ -9,21 +9,18 @@ namespace ENSEKTest.API.Controllers
     [Route("[controller]")]
     public class MeterReadingUploadsController : ControllerBase
     {
-        private readonly ILogger<MeterReadingUploadsController> _logger;
-
         private IMeterReadingUploadService MeterReadingUploadService { get; set; }
 
-        public MeterReadingUploadsController(ILogger<MeterReadingUploadsController> logger, IMeterReadingUploadService service)
+        public MeterReadingUploadsController(IMeterReadingUploadService service)
         {
-            _logger = logger;
             this.MeterReadingUploadService = service;
         }
 
         [HttpPost()]
-        public bool Post(IFormFile files)
+        public ActionResult Post(IFormFile file)
         {
-            var test = files;
-            return false;
+            var result = this.MeterReadingUploadService.ProcessUpload(file);
+            return this.Ok($"{result.NumberOfSuccesses} rows successfully processed, {result.NumberOfFailures} rows failed.");
         }
     }
 }

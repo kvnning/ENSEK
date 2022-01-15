@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ENSEKTest.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ENSEKTest.Services
 {
     public interface IMeterReadingUploadService
     {
-        int ProcessUpload(IFormFile file);
+        MeterReadingUploadResult ProcessUpload(IFormFile file);
     }
 }

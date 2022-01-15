@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ENSEK.CommonTestResources\ENSEK.CommonTestResources.csproj" />
     <ProjectReference Include="..\ENSEKTest\ENSEKTest.csproj" />
   </ItemGroup>
 

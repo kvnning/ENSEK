@@ -1,4 +1,5 @@
 using ENSEKTest.Models.EFModels;
+using ENSEKTest.Services;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,11 @@ builder.Services.AddDbContext<ENSEKContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ENSEKDatabase"));
 });
+
+//DI configuration:
+builder.Services.AddTransient<IMeterReadingUploadService, MeterReadingUploadService>();
+builder.Services.AddTransient<IParserService<IFormFile,MeterReading>, CSVParserService>();
+builder.Services.AddTransient<IUploadService<MeterReading>, DatabaseUploadService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -14,4 +14,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ENSEK.CommonTestResources\ENSEK.CommonTestResources.csproj" />
+    <ProjectReference Include="..\ENSEKTest.API\ENSEKTest.API.csproj" />
+  </ItemGroup>
+
 </Project>

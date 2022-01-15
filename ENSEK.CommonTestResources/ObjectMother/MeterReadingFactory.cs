@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using ENSEKTest.Models.EFModels;
 
-namespace ENSEKTest.Models.EFModels
+namespace ENSEKTest.CommonTestResources
 {
     public static class MeterReadingFactory
     {
