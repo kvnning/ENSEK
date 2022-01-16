@@ -49,8 +49,6 @@ Configurating DI for interfaces
 
 Adding comments and refactored ParserService interface as no need to explicitly require a Enumerable output.
 
-
-
-
-
-
+Extra things that could be done:
+- Logging : Can be easily injected into controller and services, then used in catch blocks to log problems.
+- FrontEnd UI : This would be written in Angular 13. Use NSwag to code generate an Angular client for HTTP requests.
