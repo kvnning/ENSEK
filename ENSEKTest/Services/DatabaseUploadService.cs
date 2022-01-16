@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace ENSEKTest.Services
 {
+    /// <summary>
+    /// Service for uploading MeterReadings to a database. Implementation of IUploadService.
+    /// </summary>
     public class DatabaseUploadService : IUploadService<MeterReading>
     {
         private ENSEKContext DbContext { get; set; }
@@ -29,6 +32,11 @@ namespace ENSEKTest.Services
             return true;
         }
 
+        /// <summary>
+        /// Attempts to upload a MeterReading to the database. Returns true when successful.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Upload(MeterReading item)
         {
             try

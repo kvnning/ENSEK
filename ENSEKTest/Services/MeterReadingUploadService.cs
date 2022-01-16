@@ -4,12 +4,15 @@ using Microsoft.AspNetCore.Http;
 
 namespace ENSEKTest.Services
 {
+    /// <summary>
+    /// Service class for handling uploads to a database for meter readings from a CSV. 
+    /// </summary>
     public class MeterReadingUploadService : IMeterReadingUploadService
     {
-        private IParserService<IFormFile, MeterReading> ParserService { get; set; }
+        private IParserService<IFormFile, IEnumerable<MeterReading>> ParserService { get; set; }
         private IUploadService<MeterReading> UploadService { get; set; }
 
-        public MeterReadingUploadService(IParserService<IFormFile, MeterReading> parserService, IUploadService<MeterReading> uploadService)
+        public MeterReadingUploadService(IParserService<IFormFile, IEnumerable<MeterReading>> parserService, IUploadService<MeterReading> uploadService)
         {
             this.ParserService = parserService;
             this.UploadService = uploadService;

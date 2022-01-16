@@ -2,6 +2,7 @@ using ENSEKTest.Models.EFModels;
 using ENSEKTest.Services;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,13 +16,21 @@ builder.Services.AddDbContext<ENSEKContext>(options =>
 });
 
 //DI configuration:
-builder.Services.AddTransient<IMeterReadingUploadService, MeterReadingUploadService>();
-builder.Services.AddTransient<IParserService<IFormFile,MeterReading>, CSVParserService>();
-builder.Services.AddTransient<IUploadService<MeterReading>, DatabaseUploadService>();
+builder.Services.AddScoped<IMeterReadingUploadService, MeterReadingUploadService>();
+builder.Services.AddScoped<IParserService<IFormFile, IEnumerable<MeterReading>>, CSVParserService>();
+builder.Services.AddScoped<IUploadService<MeterReading>, DatabaseUploadService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "ENSEK Technical Test",
+        Description = "An ASP.NET Core Web API for uploading meter readings",
+    });
+});
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
    .AddNegotiate();

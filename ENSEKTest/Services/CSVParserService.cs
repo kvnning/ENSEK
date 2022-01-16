@@ -7,7 +7,10 @@ using System.Globalization;
 
 namespace ENSEKTest.Services
 {
-    public class CSVParserService : IParserService<IFormFile, MeterReading>
+    /// <summary>
+    /// Helper service for parsing CSV FormFiles into a Enumerable of MeterReadings.
+    /// </summary>
+    public class CSVParserService : IParserService<IFormFile, IEnumerable<MeterReading>>
     {
         public IEnumerable<MeterReading> Read(IFormFile source, out int numberOfFailures)
         {
@@ -29,7 +32,7 @@ namespace ENSEKTest.Services
                             var meterReadingDateTime = csv.GetField<DateTime>("MeterReadingDateTime");
                             var meterReadValue = csv.GetField<string>("MeterReadValue");
 
-                            if (this.CanParse(accountId, meterReadingDateTime, meterReadValue))
+                            if (this.CanParse(meterReadValue))
                             {
                                 reading = new MeterReading
                                 {
@@ -59,7 +62,12 @@ namespace ENSEKTest.Services
             return results;
         }
 
-        public bool CanParse(int accountId, DateTime meterReadingDateTime, string meterReadValue)
+        /// <summary>
+        /// Checks if property is valid for parsing.
+        /// </summary>
+        /// <param name="meterReadValue"></param>
+        /// <returns></returns>
+        private bool CanParse(string meterReadValue)
         {
             if (meterReadValue.Length != 5)
             {

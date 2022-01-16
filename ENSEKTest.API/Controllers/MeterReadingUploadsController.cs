@@ -16,7 +16,13 @@ namespace ENSEKTest.API.Controllers
             this.MeterReadingUploadService = service;
         }
 
+        /// <summary>
+        /// Saves valid meter reading CSVs. Returns number of successes and failures.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost()]
+        [ProducesResponseType(200)]
         public ActionResult Post(IFormFile file)
         {
             var result = this.MeterReadingUploadService.ProcessUpload(file);

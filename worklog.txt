@@ -47,6 +47,8 @@ Implemented Controller (Tests now pass)
 
 Configurating DI for interfaces
 
+Adding comments and refactored ParserService interface as no need to explicitly require a Enumerable output.
+
 
 
 

@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace ENSEKTest.Services
 {
+    /// <summary>
+    /// Service class for handling uploads for meter readings. 
+    /// </summary>
     public interface IMeterReadingUploadService
     {
+        /// <summary>
+        /// Uploads meter readings and acquires number of successes and failures.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         MeterReadingUploadResult ProcessUpload(IFormFile file);
     }
 }
